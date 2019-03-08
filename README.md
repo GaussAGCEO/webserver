@@ -1,5 +1,5 @@
 # webserver
-A simple webserver with virtualhost support
+A simple webserver with virtualhost support written in JavaScript (NodeJS)
 
 
 
