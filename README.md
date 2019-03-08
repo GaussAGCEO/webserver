@@ -22,4 +22,10 @@ For a custom 404 page, just create an html file called 404.html inside the root 
 If you don't want to call your error 404 page 404.html, you can change it by changing the value of the variable `fof` in line **7**
 
 
+### Changing Port
+
+In default mode, the server listens on port 80. This is because the DNS directs you automatically to this port. If you want to change this, you can change the variable port in **line 8**. This will allow you to assign the http-listener to any port you want, from 1 to 65535.
+
+
+
 
