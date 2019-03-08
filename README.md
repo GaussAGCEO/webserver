@@ -5,7 +5,7 @@ A simple webserver with virtualhost support written in JavaScript (NodeJS)
 
 ## How to install?
 
-First of all, check if NodeJS is installed. Then put the server.js file in any directory of your choice. In the examples underneath it is placed inside a file called `server` and `/var/www`. Then type `node c:/server/server.js` for Windows or `node /var/www/server.js` for Linux and the webserver should be running.
+First of all, check if NodeJS is installed. If not, download it from **www.nodejs.org** or for Linux with `sudo apt-get install nodejs`. Then put the server.js file in any directory of your choice. In the examples underneath it is placed inside a file called `server` and `/var/www`. Then type `node c:/server/server.js` for Windows or `node /var/www/server.js` for Linux and the webserver should be running.
 
 ___
 
