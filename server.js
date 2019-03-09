@@ -12,6 +12,8 @@ http.createServer(on_http_request).listen(port)
     function on_http_request(request, response){
 
             let fsPath;
+            let mimt = "";
+         
 
             //information about request
             let requestURL = url.parse(request.url)
@@ -19,6 +21,7 @@ http.createServer(on_http_request).listen(port)
             console.log("-virtual host: "+request.rawHeaders[1])
             console.log("-path: "+request.url)
             console.log("REQUEST END")
+            
             console.log(" ")
 
             //virtual hosts
@@ -27,18 +30,22 @@ http.createServer(on_http_request).listen(port)
             
             //search for index
             let req_path_length = req_path.length
+
+            
            
             if(req_path.charAt((req_path_length)-1) === "/"){
                 fsPath = baseDirectory+"/"+virtualhost+path.normalize(requestURL.pathname)+"index.html"
+                mimt = mimeType(fsPath);
             }
             else{
                 fsPath = baseDirectory+"/"+virtualhost+path.normalize(requestURL.pathname)
+                mimt = mimeType(fsPath);
             }
 
             let fileStream = fs.createReadStream(fsPath) // fs reads the file
             fileStream.pipe(response)
                 fileStream.on('open', function() {
-                    response.writeHead(200 ,{'Content-Type': 'text/html'})
+                    response.writeHead(200 ,{'Content-Type': mimt})
                 })
 
 
@@ -54,4 +61,44 @@ http.createServer(on_http_request).listen(port)
            
     }
     console.log("The Server is listening on Port "+port)
+
+
+    function mimeType(req_path){
+        let ext = path.extname(req_path);
+        switch(ext){
+            case ".png":
+                return "image/png";
+            case ".jpg":
+                return "image/jpeg"
+            case ".svg":
+                return "image/svg+xml";
+            case ".css":
+                return "text/css";
+            case ".html":
+                return "text/html";
+            case ".mp4":
+                return "video/mp4";
+            case ".js":
+                return "text/javascript";
+            case ".pdf":
+                return "application/pdf";
+            case ".mpg":
+                return "video/mpeg";
+            case ".avi":
+                return "video/x-msvideo";
+            case ".webm":
+                return "video/webm";
+            case ".txt":
+                return "text/plain";
+            case ".rtf":
+                return "text/rtf"
+            case ".xml":
+                return "text/xml";
+            case ".json":
+                return "application/json";
+            case ".zip":
+                return "application/zip";
+        }
+    }
+
 
